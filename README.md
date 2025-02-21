@@ -85,10 +85,12 @@ export function getAuthenticatedUser() {
 }
 ```
 
+> [!WARNING]
+> Node.js' AsyncLocalStorage is only available on the server. It cannot be used in client-side code.
+
 ## Getting Started
 
 1. Install dependencies with your package manager (e.g., `pnpm install`).
 2. Run the development server with `pnpm dev`.
 3. Explore the code in the `src/hooks.server.ts` and `src/lib/server/` directories to see how AsyncLocalStorage is integrated.
 
-Happy coding!
