@@ -5,8 +5,8 @@
 </script>
 
 <section>
-	<div class="container mx-auto p-10">
-		<h1 class="mb-4 text-4xl font-bold">About Us</h1>
+	<div class="container mx-auto px-4 py-6">
+		<h1 class="mb-6 text-3xl font-bold">About Us</h1>
 		<p class="mb-4">
 			Welcome to our About page! This page provides information about our mission, team, and values.
 		</p>

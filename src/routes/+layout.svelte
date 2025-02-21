@@ -4,30 +4,35 @@
 	let { data, children } = $props();
 </script>
 
-<nav class="flex items-center justify-between p-4">
+<nav class="flex items-center justify-between bg-gray-800 p-4 text-white">
 	<div class="flex gap-4">
-		<a href="/" class="text-blue-500 hover:underline">Home</a>
-		<a href="/auth" class="text-blue-500 hover:underline">Authenticate</a>
-		<a href="/about" class="text-blue-500 hover:underline">About</a>
-        <a href="/protected" class="text-blue-500 hover:underline">Protected</a>
+		<a href="/" class="rounded px-3 py-2 hover:bg-gray-700">Home</a>
+		<a href="/about" class="rounded px-3 py-2 hover:bg-gray-700">About</a>
+		<a href="/auth" class="rounded px-3 py-2 hover:bg-gray-700">Authenticate</a>
+		{#if data.user}
+			<a href="/protected" class="rounded px-3 py-2 hover:bg-gray-700">Protected</a>
+		{/if}
 	</div>
 	{#if data.user}
 		<form>
 			<button
 				formaction="/auth?/logout"
 				formmethod="POST"
-				class="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600">Logout</button
+				class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
 			>
+				Logout
+			</button>
 		</form>
 	{:else}
-		<p>You are not logged in.</p>
+		<p class="px-3 py-2">You are not logged in.</p>
 	{/if}
 </nav>
-<main class="min-h-screen px-4">
+
+<main class="min-h-screen bg-gray-100 px-4 py-6">
 	{#if data.user}
-		<p>Welcome, {data.user.name}!</p>
+		<p class="mb-4">Welcome, {data.user.name}!</p>
 	{:else}
-		<p>You are not logged in.</p>
+		<p class="mb-4">You are not logged in.</p>
 	{/if}
 	{@render children()}
 </main>
