@@ -6,6 +6,18 @@ This project demonstrates how to use Node.js' AsyncLocalStorage within a SvelteK
 
 In this example, the AsyncLocalStorage is initialized in the server hooks and is used to store the authenticated user and other request-specific data.
 
+## How AsyncLocalStorage Works
+
+AsyncLocalStorage provides a way to store data throughout the lifetime of an asynchronous operation. It allows you to create a storage context that is unique to each asynchronous execution chain. This is particularly useful in web applications where you need to maintain request-specific data across various asynchronous operations without explicitly passing it around.
+
+### Key Concepts
+
+1. **Context Creation**: A new context is created at the beginning of each request using `asyncLocalStorage.run()`. This context is a Map object that can store key-value pairs.
+
+2. **Setting Data**: Data can be stored in the context using the `setRequestData` function. This function retrieves the current context and sets the specified key-value pair.
+
+3. **Getting Data**: Data can be retrieved from the context using the `getRequestData` function. This function retrieves the current context and gets the value associated with the specified key.
+
 ## Advantages Over event.locals and Load Function Waterfalls
 
 1. **Simplified Data Propagation**: With AsyncLocalStorage, data such as the authenticated user is set once during the request lifecycle and then accessed anywhere within that lifecycle, eliminating the need to manually pass values through `event.locals` in each load function.
@@ -27,7 +39,7 @@ import { runWithContext, setRequestData } from '$lib/server/requestContext';
 
 export const handle = async ({ event, resolve }) => {
 	return runWithContext(async () => {
-		const token = event.cookies.get('auth_token');
+		const token = event.cookies.get('auth_user');
 
 		if (token) {
 			const user = await getUserFromToken(token);
