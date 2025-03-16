@@ -1,8 +1,11 @@
 <!-- src/routes/+layout.svelte -->
 <script>
+	import { Inspect } from 'svelte-inspect-value';
 	import '../app.css';
 	let { data, children } = $props();
 </script>
+
+<Inspect value={data} />
 
 <nav class="flex items-center justify-between bg-gray-800 p-4 text-white">
 	<div class="flex gap-4">

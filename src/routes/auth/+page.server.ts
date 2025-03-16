@@ -1,7 +1,7 @@
 // src/routes/auth/+page.server.ts
-import { redirect } from '@sveltejs/kit';
+import { redirect, type Actions } from '@sveltejs/kit';
 
-export const actions = {
+export const actions: Actions = {
 	login: async ({ cookies }) => {
 		cookies.set('auth_token', 'valid_token', { path: '/', httpOnly: false });
 		throw redirect(303, '/');
