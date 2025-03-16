@@ -5,7 +5,7 @@ import type { Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	return runWithContext(async () => {
-		const token = event.cookies.get('auth_user');
+		const token = event.cookies.get('auth_token');
 
 		// Check if the auth token exists in the cookies
 		if (token) {

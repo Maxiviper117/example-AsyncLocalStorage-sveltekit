@@ -39,7 +39,7 @@ import { runWithContext, setRequestData } from '$lib/server/requestContext';
 
 export const handle = async ({ event, resolve }) => {
 	return runWithContext(async () => {
-		const token = event.cookies.get('auth_user');
+		const token = event.cookies.get('auth_token');
 
 		if (token) {
 			const user = await getUserFromToken(token);
